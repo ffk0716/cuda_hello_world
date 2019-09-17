@@ -1,8 +1,10 @@
+#include "div.h"
+#include "pow.h"
 #include <cassert>
+#include <cfloat>
+#include <cmath>
 #include <cudnn.h>
 #include <iostream>
-#include <cmath>
-#include "pow.h"
 
 bool init_cuda()
 {
@@ -38,11 +40,26 @@ void test_pow()
     run(-2, 0.3);
 }
 
+void test_div()
+{
+    auto run = [](float x, float y) {
+        auto a = cuda_fdiv_rn(x, y);
+        auto b = cuda_fdividef(x, y);
+        std::cout << "cuda_fdiv_rn(" << x << ", " << y << ") == " << cuda_fdiv_rn(x, y) << std::endl;
+        std::cout << "cuda_fdividef(" << x << ", " << y << ") == " << cuda_fdividef(x, y) << std::endl;
+        std::cout << "" << x << " / " << y << " == " << x / y << std::endl;
+        std::cout << std::endl;
+    };
+    run(FLT_MAX, FLT_MAX);
+    run(3, 2);
+}
+
 int main(void)
 {
     if (!init_cuda())
         return -1;
 
     test_pow();
+    test_div();
     return 0;
 }

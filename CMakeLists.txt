@@ -6,10 +6,15 @@ enable_language(CUDA)
 find_library(CUDNN_LIB cudnn HINTS $ENV{CUDNN_ROOT}/lib64)
 find_path(CUDNN_INCLUDE cudnn.h HINTS $ENV{CUDNN_ROOT}/include)
 
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --use_fast_math")
+
 include_directories(
     ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
     ${CUDNN_INCLUDE})
 
 set(CMAKE_CXX_STANDARD 11)
-add_executable(demo main.cxx pow.cu)
+add_executable(demo
+    main.cxx
+    div.cu
+    pow.cu)
 set_property(TARGET demo PROPERTY CUDA_STANDARD 11)
