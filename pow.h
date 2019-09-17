@@ -1,2 +1,3 @@
+#pragma once
 
-void cuda_pow(float x, float y);
+float cuda_pow(float x, float y);
