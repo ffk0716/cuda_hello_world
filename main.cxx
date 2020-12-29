@@ -1,9 +1,10 @@
 #include "div.h"
 #include "pow.h"
+#include <cuda_runtime.h>
+// system header
 #include <cassert>
 #include <cfloat>
 #include <cmath>
-#include <cudnn.h>
 #include <iostream>
 
 bool init_cuda()

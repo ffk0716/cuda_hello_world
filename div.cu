@@ -1,4 +1,4 @@
-#include <cudnn.h>
+#include <cuda_runtime.h>
 
 __global__ void fdiv_rn_global(float x, float y, float *r)
 {

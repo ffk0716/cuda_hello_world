@@ -1,4 +1,4 @@
-#include <cudnn.h>
+#include <cuda_runtime.h>
 
 __global__ void powf_global(float x, float y, float *r)
 {
