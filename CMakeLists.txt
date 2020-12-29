@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 
 project(demo)
 enable_language(CUDA)
+enable_testing()
 
 # setup CUDNN lib and include
 find_library(CUDNN_LIB cudnn HINTS $ENV{CUDNN_ROOT}/lib64)
@@ -20,3 +21,5 @@ add_executable(demo
     div.cu
     pow.cu)
 set_property(TARGET demo PROPERTY CUDA_STANDARD 11)
+
+add_test(NAME demo COMMAND demo)
